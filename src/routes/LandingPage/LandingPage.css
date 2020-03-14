@@ -1,0 +1,42 @@
+.landing-page{
+    color: white;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    max-height: 82vh;
+    overflow: hidden;
+
+}
+#user-name{
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    justify-content: center;
+}
+.form-group {
+    text-align:center;
+}
+
+
+
+input{
+    width: 40vw;
+    padding: 7px;
+    border-radius: 6px;
+    border: none;
+
+}
+button {
+    margin-top: 1vh;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #3c7179;
+    color: #03ffc2;
+}
+button:hover {
+    background-color: #03ffc2;
+    color: #3c7179;
+}
+
+  

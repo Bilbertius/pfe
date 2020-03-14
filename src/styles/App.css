@@ -1,0 +1,40 @@
+.App {
+  text-align: center;
+
+  background:#408C94;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+html {
+  background: #408C94;;
+}
+.App-header {
+  background-color: cornflowerblue;
+  margin: 0 auto;
+  min-height: 12vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: darksalmon;
+}
+body {
+  margin: 0 auto;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+main {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+
+}
+
