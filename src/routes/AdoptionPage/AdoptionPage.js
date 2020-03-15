@@ -24,7 +24,7 @@ class AdoptionPage extends React.Component {
     }, 10000) //once the page is loading start the adpotion dog timer
 
     this.setState({
-      users: users.adoptorsLine,
+      users: users.peopleLine,
       dog: dog.dog,
       cat: cat.cat,
       intervalId
