@@ -6,9 +6,9 @@ import ErrorPage from '../routes/ErrorPage/ErrorPage';
 import '../styles/App.css';
 
 class App extends React.Component {
-  state = {
-    
-  }
+  
+  
+  
   render() {
     return (
     <div className="App">

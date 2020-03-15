@@ -2,11 +2,8 @@ import config from '../config';
 
 const PetApiService = {
   async listUsers() {
-    const res = await fetch(`${config.API_ENDPOINT}/people`)
-    if (!res.ok) {
-      res.json().then(e => Promise.reject(e))
-    }
-    return res.json();
+    const res = await fetch(`${config.API_ENDPOINT}/people`);
+    return !res.ok ? res.json().then(e => Promise.reject(e)) : res.json();
   },
   
   

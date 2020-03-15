@@ -2,6 +2,7 @@ import React from 'react';
 import PetApiService from '../../services/pet-api-service';
 import './LandingPage.css';
 import SearchPets from '../../images/searchpets.png';
+import { Link } from 'react-router-dom';
 class LandingPage extends React.Component {    
 
    async handleSubmit(e) {
@@ -34,7 +35,7 @@ class LandingPage extends React.Component {
             <input type='text' name='name' id='name' placeholder={'Insert name here'} required/>
           </div>
           <div className='form-group cta'>
-            <button type='submit' className='submit-button'>Begin adoption</button>
+              <button type='submit' className='submit-button'><Link to='/adoption'>Begin adoption</Link></button>
           </div>
         </form>
 
