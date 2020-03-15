@@ -8,31 +8,28 @@ class AdoptionPage extends React.Component {
     users: [],
     dog: {},
     cat: {},
-    recentlyAdopted: [],
+    lastAdopted: [],
     intervalId: null,
-  }
+  };
 
   async componentDidMount() {
     const userReq = PetApiService.listUsers();
     const catReq = PetApiService.getCat();
     const dogReq = PetApiService.getDog();
 
-    const [users, cat, dog] = await Promise.all([userReq, catReq, dogReq])
+    const [users, cat, dog] = await Promise.all([userReq, catReq, dogReq]);
 
-    const intervalId = setInterval(() => {
-      this.adopt('dog');
-    }, 10000) //once the page is loading start the adpotion dog timer
 
     this.setState({
       users: users.peopleLine,
       dog: dog.dog,
       cat: cat.cat,
-      intervalId
+     
     })
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    // console.log('in componeneDidUpdate')
+   
     if (prevState.users.length !== 0 && this.state.users.length === 0) {
       const newUsers = await PetApiService.refreshUsers();
       this.setState({ users: newUsers })
@@ -41,23 +38,23 @@ class AdoptionPage extends React.Component {
 
   adopt = async (animal) => {
     const userObj = localStorage.getItem('petful-user');
-    const name = JSON.parse(userObj).name;
+    const name = JSON.parse(userObj.name);
 
     const currentUser = {
       name: name,
-    }
+    };
 
-    const response = await PetApiService.adopt(animal, currentUser)
-    const newAnimal = await PetApiService.getPets(animal)
-    const newUsers = await PetApiService.listUsers()
+    const response = await PetApiService.adopt(animal, currentUser);
+    const newAnimal = await PetApiService.getPets(animal);
+    const newUsers = await PetApiService.listUsers();
 
     this.setState({
-      recentlyAdopted: response.adoptedList,
+      lastAdopted: response.adoptedList,
       [animal]: newAnimal[animal],
       users: newUsers.peopleLine,
-    })
+    });
     this.cancelInterval()
-  }
+  };
 
   cancelInterval = () => {
     const userObj = localStorage.getItem('petful-user');
@@ -67,7 +64,7 @@ class AdoptionPage extends React.Component {
 
       clearInterval(this.state.intervalId)
     }
-  }
+  };
 
   renderUsers = (users) => {
 
@@ -76,52 +73,55 @@ class AdoptionPage extends React.Component {
         <h4>{user}</h4>
       </div>
     })
-  }
+  };
 
   renderCat = (animal) => {
-    const {imageURL, name, breed, sex, story } = animal;
+    const {imageURL, name, breed, gender, story } = animal;
     return (<div className='animal'>
       <img src={imageURL} alt='animal-profile-img' className='responsive' />
-      <h3>Name: {name}</h3>
-      <p>Breed: {breed}</p>
-      <p>Gender: {sex}</p>
-      <p>Story: {story}</p>
+      <ul id='info'>
+        <li><h4>Name: {name}</h4></li>
+        <li><h5>Breed: {breed}</h5></li>
+        <li><h5>Gender: {gender}</h5></li>
+        <li><h5>Story: {story}</h5></li>
+      </ul>
     </div>);
-  }
+  };
 
   renderDog = (animal) => {
-    const {imageURL, name, breed, sex, story } = animal;
+    const {imageURL, name, breed, gender, story } = animal;
     return (<div className='animal'>
       <img src={imageURL} alt='animal-profile-img' className='responsive' />
-      <h3>Name: {name}</h3>
-      <p>Breed: {breed}</p>
-      <p>Gender: {sex}</p>
-      <p>Story: {story}</p>
+      <ul id='info'>
+        <li><h4>Name: {name}</h4></li>
+        <li><h5>Breed: {breed}</h5></li>
+        <li><h5>Gender: {gender}</h5></li>
+        <li><h5>Story: {story}</h5></li>
+      </ul>
     </div>);
-  }
+  };
 
   renderLastAdopted = () => {
     return (
-      this.state.recentlyAdopted.map((result, i) => {
+      this.state.lastAdopted.map((result, i) => {
         return <div className='adopted' key={i}>
-          <p> {result.name}</p>
+          <p> {result.name} adopted by {this.state.users[0]} </p>
         </div>
       })
     )
-  }
+  };
 
   canAdopt = () => {
 
-    // console.log('checking user')
+
     const userObj = localStorage.getItem('petful-user');
     const name = JSON.parse(userObj).name;
-    // console.log(this.state.users[0], name)
     if (this.state.users.length) {
       return this.state.users[0] !== name
     }
     else return false
 
-  }
+  };
 
   render() {
 
@@ -134,20 +134,20 @@ class AdoptionPage extends React.Component {
         </div>
 
         <div className='animals'>
-          <h2>Up Next to Adopt: </h2>
-          <div className='animal-wrapper'>
+          <h2>On the adoption blockt: </h2>
+          <div className='animal-container'>
             <div className='dog-queue'>
               {this.renderDog(dog)}
-              <button className='button primary' onClick={() => this.adopt('dog')} disabled={this.canAdopt()}>Adopt {dog.name}</button>
+              <button onClick={() => this.adopt('dog')} disabled={this.canAdopt()}>Adopt {dog.name}</button>
             </div>
             <div className='cat-queue'>
               {this.renderCat(cat)}
-              <button className='button primary' onClick={() => this.adopt('cat')} disabled={this.canAdopt()}>Adopt {cat.name}</button>
+              <button onClick={() => this.adopt('cat')} disabled={this.canAdopt()}>Adopt {cat.name}</button>
             </div>
           </div>
         </div>
 
-        <div className='recently-adopted'>
+        <div className='last-adopted'>
                     <h4>Recently Adopted: </h4>
           <div className='adopted-wrapper'>
             {this.renderLastAdopted()}
@@ -156,7 +156,7 @@ class AdoptionPage extends React.Component {
       </section>
     );
   };
-}
+};
 export default AdoptionPage;
 
 

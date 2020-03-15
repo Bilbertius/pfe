@@ -6,7 +6,8 @@
   max-height: 100vh;
 }
 html {
-  background: #408C94;;
+  background: #408C94;
+  max-width: 100vw;
 }
 .App-header {
   background-color: cornflowerblue;
@@ -22,7 +23,11 @@ html {
 
 a {
   text-decoration: none;
-  color: darksalmon;
+  color: #1efabb;
+}
+a:hover {
+  color: #e9b983;
+  text-shadow: 0 0 5px mediumslateblue;
 }
 body {
   margin: 0 auto;

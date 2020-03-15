@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link ,Switch, Route} from 'react-router-dom';
 import LandingPage from '../routes/LandingPage/LandingPage';
-import AdoptionPage from '../routes/AdoptionPage/AdoptionPage';
+
 import ErrorPage from '../routes/ErrorPage/ErrorPage';
 import '../styles/App.css';
+import AdoptionPage from '../routes/AdoptionPage/AdoptionPage';
 
 class App extends React.Component {
   
@@ -19,9 +20,15 @@ class App extends React.Component {
       </header>
       <main className="main">
         <Switch>
-          <Route exact path='/' component={LandingPage}></Route>
-          <Route exact path='/adopted' component={AdoptionPage}></Route>
-          <Route component={ErrorPage}></Route>
+          <Route exact path='/' >
+            <LandingPage />
+          </Route>
+          <Route path={'/error'}>
+            <ErrorPage />
+          </Route>
+          <Route  path='/adoption' >
+            <AdoptionPage />
+          </Route>
         </Switch>
       </main>
     </div>

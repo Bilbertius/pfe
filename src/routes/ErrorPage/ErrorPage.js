@@ -4,7 +4,11 @@ import React from 'react';
   render() {
     return (
       <section className='error-page'>
-          Oops! Seems something went wrong, please go outside and try again later.
+          Oops! Oh jeez, it seems something went wrong. Oh yeah you becha...
+          
+          
+          .Ummm aaa please go outside and try again later I guess or try again now
+          I really have no idea.
       </section>
     )
   }
