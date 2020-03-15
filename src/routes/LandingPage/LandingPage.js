@@ -17,7 +17,7 @@ class LandingPage extends React.Component {
 
         localStorage.setItem('petful-user', JSON.stringify(newUser));
         await PetApiService.createUser(newUser);
-        this.props.history.push('/adoption')
+ 
       }
   
     
