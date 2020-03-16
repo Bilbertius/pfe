@@ -32,11 +32,11 @@
   }
 
   
-  .animals {
+  .pets {
     flex: 4;
   }
 
-  .animal > button {
+  .pet > button {
 
     padding: 4vh 4vw;
   }
@@ -52,7 +52,7 @@ ul#info > li {
   height: 2vh;
 }
   
-  .animal-container{
+  .pet-container{
     display: flex;
     flex-flow: column nowrap;
     align-items: stretch;

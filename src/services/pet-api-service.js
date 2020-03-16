@@ -48,7 +48,7 @@ const PetApiService = {
       },
       body: JSON.stringify(name)
     });
-      return res.ok ? Promise.resolve('Animal successfully adopted') : Promise.reject('Cannot complete adoption, try again in a moment');
+      return res.ok ? Promise.resolve(`${animal} succesfully adopted by ${name.name}`) : Promise.reject('Cannot complete adoption, try again in a moment');
       
    
   },
