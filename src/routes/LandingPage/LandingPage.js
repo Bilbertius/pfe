@@ -10,10 +10,12 @@ class LandingPage extends React.Component {
    async handleSubmit(e) {
         e.preventDefault();
         const  { name }  = e.target;
-        
+        debugger
         const newUser = {
             name: name.value
-        }
+        };
+ 
+        console.log(newUser);
         
        localStorage.setItem('petful-user', JSON.stringify(newUser));
        await PetApiService.createUser(newUser);
@@ -31,14 +33,14 @@ class LandingPage extends React.Component {
                     <img id='landing-img' src={SearchPets} alt="search for your new pet"/>
                 </span>
 
-        <form action='#' id='user-name' onSubmit={(e) => this.handleSubmit}>
+        <form action='#' id='user-name' onSubmit={(e) => this.handleSubmit(e)}>
           <div className='form-group'>
            
             <input type='text' name='name' id='name' placeholder={'Insert name here'} required/>
           </div>
           <div className='form-group cta'>
      
-        <Link to='/adoption'><button  type='submit' className='submit-button'>Begin adoption</button></Link>
+        <Link to='/adoption' ><button  type='submit' className='submit-button'>Begin adoption</button></Link>
               
           </div>
         </form>

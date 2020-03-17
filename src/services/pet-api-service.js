@@ -9,11 +9,13 @@ const PetApiService = {
   
   async createUser(user) {
     const res = await fetch(`${config.API_ENDPOINT}/people`, {
+  
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(user)
+
+      body: JSON.stringify(user) && console.log(user),
     });
     return !res.ok ? res.json().then(err => Promise.reject(err.statusText)) : res.json();
   },
@@ -34,7 +36,7 @@ const PetApiService = {
   
   
   async getCat() {
-    const res = await fetch(`${config.API_ENDPOINT}/cat`)
+    const res = await fetch(`${config.API_ENDPOINT}/cat`);
     return !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
   },
   

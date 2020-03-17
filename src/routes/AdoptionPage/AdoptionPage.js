@@ -22,7 +22,9 @@ class AdoptionPage extends React.Component {
     const intervalId = setInterval(() => {
       this.adopt('dog');
     }, 10000); //once the page is loading start the adpotion dog timer
-    
+    const userObj = localStorage.getItem('petful-user');
+    const name = JSON.parse(userObj).name;
+    console.log(name);
     this.setState({
       users: users.peopleLine,
       dog: dog.dog,
@@ -32,7 +34,7 @@ class AdoptionPage extends React.Component {
   }
   
   async componentDidUpdate(prevProps, prevState) {
-    // console.log('in componeneDidUpdate')
+
     if (prevState.users.length !== 0 && this.state.users.length === 0) {
       const newUsers = await PetApiService.refreshUsers();
       this.setState({ users: newUsers })
@@ -109,12 +111,13 @@ class AdoptionPage extends React.Component {
     )
   };
   
-  allowedToAdopt = () => {
+  canAdopt = () => {
     
-    // console.log('checking user')
+
     const userObj = localStorage.getItem('petful-user');
-    const name = JSON.parse(userObj).name;
-    // console.log(this.state.users[0], name)
+    console.log(userObj);
+    const name = JSON.parse(userObj)[name];
+ 
     if (this.state.users.length) {
       return this.state.users[0] !== name
     }
@@ -137,11 +140,11 @@ class AdoptionPage extends React.Component {
             <div className='animal-wrapper'>
               <div className='dog-queue'>
                 {this.renderDog(dog)}
-                <button className='button primary' onClick={() => this.adopt('dog')} disabled={!this.allowedToAdopt()} >Adopt</button>
+                <button className='button primary' onClick={() => this.adopt('dog')} disabled={this.canAdopt()} >Adopt</button>
               </div>
               <div className='cat-queue'>
                 {this.renderCat(cat)}
-                <button className='button primary' onClick={() => this.adopt('cat')} disabled={!this.allowedToAdopt()} >Adopt</button>
+                <button className='button primary' onClick={() => this.adopt('cat')} disabled={this.canAdopt()} >Adopt</button>
               </div>
             </div>
           </div>
