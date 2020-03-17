@@ -10,6 +10,7 @@ class AdoptionPage extends React.Component {
     cat: {},
     lastAdopted: [],
     intervalId: null,
+    intervalCount : 0
   };
   
   async componentDidMount() {
@@ -20,16 +21,18 @@ class AdoptionPage extends React.Component {
     const [users, cat, dog] = await Promise.all([userReq, catReq, dogReq]);
     
     const intervalId = setInterval(() => {
-      this.adopt('dog');
-    }, 10000); //once the page is loading start the adpotion dog timer
-    const userObj = localStorage.getItem('petful-user');
-    const name = JSON.parse(userObj).name;
-    console.log(name);
+      return this.state.intervalCount % 2 ?
+      this.adopt('dog') : this.adopt('cat');
+    }, 10000);
+
+    
+   const count = this.state.intervalCount + 1;
     this.setState({
       users: users.peopleLine,
       dog: dog.dog,
       cat: cat.cat,
-      intervalId
+      intervalId,
+      intervalCount : count
     })
   }
   
@@ -62,8 +65,7 @@ class AdoptionPage extends React.Component {
   };
   
   cancelInterval = () => {
-    const userObj = localStorage.getItem('petful-user');
-    const name = JSON.parse(userObj).name;
+   
     
     if (this.state.users[0] === name) {
       
@@ -111,9 +113,13 @@ class AdoptionPage extends React.Component {
     )
   };
   
+  
+  
+  
   canAdopt = () => {
-    
-
+    return this.state.intervalCount === this.state.users.length
+  };
+/*
     const userObj = localStorage.getItem('petful-user');
     console.log(userObj);
     const name = JSON.parse(userObj)[name];
@@ -122,8 +128,9 @@ class AdoptionPage extends React.Component {
       return this.state.users[0] !== name
     }
     else return false
-    
-  };
+ */
+  
+  
   
   render() {
     
