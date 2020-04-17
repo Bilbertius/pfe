@@ -2,27 +2,35 @@ import React from 'react';
 import {Link } from 'react-router-dom';
 import PetApiService from '../../services/pet-api-service';
 import './LandingPage.css';
+
+
 import SearchPets from '../../images/searchpets.png';
 
 
 class LandingPage extends React.Component {    
 
-   async handleSubmit(e) {
-        e.preventDefault();
-        const  { name }  = e.target;
-        debugger
-        const newUser = {
-            name: name.value
-        };
- 
-        console.log(newUser);
-        
-       localStorage.setItem('petful-user', JSON.stringify(newUser));
-       await PetApiService.createUser(newUser);
-      
-      }
+   state = {
+       user : '',
+       redirect: false
+   }
   
-    
+   
+   handleChange = e => {
+       e.preventDefault();
+       
+       this.setState({
+           user : e.target.value
+       })
+   }
+    handleSubmit = e => {
+     
+       e.preventDefault();
+       PetApiService.createUser(this.state.user).then(res => {
+           !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+       })
+       
+       
+    }
   render() {
     return (
       <section className='landing-page'>
@@ -33,17 +41,7 @@ class LandingPage extends React.Component {
                     <img id='landing-img' src={SearchPets} alt="search for your new pet"/>
                 </span>
 
-        <form action='#' id='user-name' onSubmit={(e) => this.handleSubmit(e)}>
-          <div className='form-group'>
-           
-            <input type='text' name='name' id='name' placeholder={'Insert name here'} required/>
-          </div>
-          <div className='form-group cta'>
-     
-        <Link to='/adoption' ><button  type='submit' className='submit-button'>Begin adoption</button></Link>
-              
-          </div>
-        </form>
+        <Link to='/adoption'>Get Started</Link>
         
 
       </section>

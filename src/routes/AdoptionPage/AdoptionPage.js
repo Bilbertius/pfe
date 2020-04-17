@@ -1,169 +1,74 @@
 import React from 'react';
 import PetApiService from '../../services/pet-api-service';
 import './AdoptionPage.css';
-
+import Cat from '../../components/Cat.js';
+import Dog from '../../components/Dog.js';
+import Users from '../../components/Users';
 
 class AdoptionPage extends React.Component {
-  state = {
-    users: [],
-    dog: {},
-    cat: {},
-    lastAdopted: [],
-    intervalId: null,
-    intervalCount : 0
-  };
-  
-  async componentDidMount() {
-    const userReq = PetApiService.listUsers();
-    const catReq = PetApiService.getCat();
-    const dogReq = PetApiService.getDog();
-    
-    const [users, cat, dog] = await Promise.all([userReq, catReq, dogReq]);
-    
-    const intervalId = setInterval(() => {
-      return this.state.intervalCount % 2 ?
-      this.adopt('dog') : this.adopt('cat');
-    }, 10000);
+	state={
+		user: '',
+		userSubmit: false,
+		disable: true,
+		userLine: [],
+		currentAdopter: ''
+	}
+	
+	componentDidMount() {
 
-    
-   const count = this.state.intervalCount + 1;
-    this.setState({
-      users: users.peopleLine,
-      dog: dog.dog,
-      cat: cat.cat,
-      intervalId,
-      intervalCount : count
-    })
-  }
-  
-  async componentDidUpdate(prevProps, prevState) {
+		PetApiService.listUsers().then(res => {
+			this.setState({
+				userLine: res.userLine
+			})
+		})
+		
+	}
+	
+	handleChange = e => {
+		e.preventDefault();
+		this.setState({
+			user: e.target.value
+		})
+	}
+	
+	handleSubmit = e => {
+		this.setState({
+			userSubmit: true,
+			userLine: [ ...this.state.userLine, this.state.user]
+		})
+		
+		setTimeout(this.adoptionCycle, 1000);
+	}
+	
+	adoptionCycle = () => {
+		this.state.userLine.forEach((user, i) => {
+			setTimeout(() => {
+				user === this.state.user ? this.setState({disable: false, currentAdopter: this.state.user}) : this.setState({currentAdopter: user});
+			},4000 * i)
+		})
+		
+	}
 
-    if (prevState.users.length !== 0 && this.state.users.length === 0) {
-      const newUsers = await PetApiService.refreshUsers();
-      this.setState({ users: newUsers })
-    }
-  }
-  
-  adopt = async (animal) => {
-    const userObj = localStorage.getItem('petful-user');
-    const name = JSON.parse(userObj).name;
-    
-    const currentUser = {
-      name: name,
-    };
-    
-    const response = await PetApiService.adopt(animal, currentUser);
-    const newAnimal = await PetApiService.getPets(animal);
-    const newUsers = await PetApiService.listUsers();
-    
-    this.setState({
-      recentlyAdopted: response.adoptedList,
-      [animal]: newAnimal[animal],
-      users: newUsers.peopleLine,
-    });
-    this.cancelInterval()
-  };
-  
-  cancelInterval = () => {
-   
-    
-    if (this.state.users[0] === name) {
-      
-      clearInterval(this.state.intervalId)
-    }
-  };
-  
-  renderUsers = (users) => {
-    
-    return users.map((user, i) => {
-      return <div className={(i === 0 ? 'user active' : 'user')} key={i}>
-        <h4>{user}</h4>
-      </div>
-    })
-  };
-  
-  renderCat = (animal) => {
-    
-    return (<div className='animal'>
-      <img src={animal.imageURL} alt='animal-profile-img' className='responsive' />
-      <h3>Name: {animal.name}</h3>
-      <p>Breed: {animal.breed}</p>
-      <p>Gender: {animal.gender}</p>
-      <p>Story: {animal.story}</p>
-    </div>);
-  };
-  
-  renderDog = (animal) => {
-    return (<div className='animal'>
-      <img src={animal.imageURL} alt='animal-profile-img' className='responsive' />
-      <h3>Name: {animal.name}</h3>
-      <p>Breed: {animal.breed}</p>
-      <p>Gender: {animal.gender}</p>
-      <p>Story: {animal.story}</p>
-    </div>);
-  };
-  
-  renderRecentlyAdopted = () => {
-    return (
-        this.state.lastAdopted.map((result, i) => {
-          return <div className='adopted' key={i}>
-            <p> {result.name}</p>
-          </div>
-        })
-    )
-  };
-  
-  
-  
-  
-  canAdopt = () => {
-    return this.state.intervalCount === this.state.users.length
-  };
-/*
-    const userObj = localStorage.getItem('petful-user');
-    console.log(userObj);
-    const name = JSON.parse(userObj)[name];
- 
-    if (this.state.users.length) {
-      return this.state.users[0] !== name
-    }
-    else return false
- */
-  
-  
-  
-  render() {
-    
-    const { users, dog, cat } = this.state;
-    return (
-        <section className='adoptions-page'>
-          <div className='users'>
-            <h4>User Line:</h4>
-            {this.renderUsers(users)}
-          </div>
-          
-          <div className='animals'>
-            <h2>Up Next to Adopt: </h2>
-            <div className='animal-wrapper'>
-              <div className='dog-queue'>
-                {this.renderDog(dog)}
-                <button className='button primary' onClick={() => this.adopt('dog')} disabled={this.canAdopt()} >Adopt</button>
-              </div>
-              <div className='cat-queue'>
-                {this.renderCat(cat)}
-                <button className='button primary' onClick={() => this.adopt('cat')} disabled={this.canAdopt()} >Adopt</button>
-              </div>
-            </div>
-          </div>
-          
-          <div className='recently-adopted'>
-            <h4>Recently Adopted: </h4>
-            <div className='adopted-wrapper'>
-              {this.renderRecentlyAdopted()}
-            </div>
-          </div>
-        </section>
-    );
-  };
+render() {
+	console.log(this.state.userLine);
+	return (
+		<div className="adoption-page">
+			<Users line={this.state.userLine}/>
+			<div className="adoption-display">
+				<Cat disable={this.state.disable}/>
+				<Dog disable={this.state.disable}/>
+			</div>
+			<h2>{this.state.currentAdopter}</h2>
+			{!this.state.userSubmit &&
+			<div>
+				<p>Please enter your name to begin</p>
+				<input type='text' onChange={this.handleChange} value={this.state.user} />
+				<button onClick={this.handleSubmit}>begin</button>
+				</div>}
+		</div>
+	)
+}
+
+
 }
 export default AdoptionPage;

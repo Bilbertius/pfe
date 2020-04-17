@@ -1,32 +1,27 @@
 import config from '../config';
 
 const PetApiService = {
+  
   async listUsers() {
-    const res = await fetch(`${config.API_ENDPOINT}/people`);
+    const res = await fetch(`${config.API_ENDPOINT}/user`);
     return !res.ok ? res.json().then(e => Promise.reject(e)) : res.json();
   },
   
   
   async createUser(user) {
-    const res = await fetch(`${config.API_ENDPOINT}/people`, {
+    const res = await fetch(`${config.API_ENDPOINT}/user`, {
   
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
 
-      body: JSON.stringify(user) && console.log(user),
+      body: JSON.stringify(user),
     });
     return !res.ok ? res.json().then(err => Promise.reject(err.statusText)) : res.json();
   },
   
-  
-  
-  async getPets(pet) {
-      const res = await fetch(`${config.API_ENDPOINT}/${pet}`);
-      return !res.ok ? res.json().then(err => Promise.reject(err.statusText)) : res.json();
-  },
-  
+
   
   async getDog() {
     const res = await fetch(`${config.API_ENDPOINT}/dog`);
@@ -37,24 +32,31 @@ const PetApiService = {
   
   async getCat() {
     const res = await fetch(`${config.API_ENDPOINT}/cat`);
-    return !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+    return !res.ok ?res.json().then(e => Promise.reject(e)) : res.json();
   },
   
   
   
-  async adopt(animal, name) {
-    const res = await fetch(`${config.API_ENDPOINT}/${animal}`, {
+  
+  async adoptCat() {
+    const res = await fetch(`${config.API_ENDPOINT}/cat`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(name)
+      }
     });
-      return res.ok ? Promise.resolve(`${animal} succesfully adopted by ${name.name}`) : Promise.reject('Cannot complete adoption, try again in a moment');
-      
-   
+    return !res.ok ?res.json().then(e => Promise.reject(e)) : res.json();
   },
   
+  async adoptDog() {
+    const res = await fetch(`${config.API_ENDPOINT}/dog`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return !res.ok ?res.json().then(e => Promise.reject(e)) : res.json();
+  },
   
   
   async refreshUsers() {
