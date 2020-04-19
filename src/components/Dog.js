@@ -2,7 +2,7 @@ import React from 'react';
 import PetApiService from '../services/pet-api-service';
 import './Animal.css';
 
-export default class Cat extends React.Component {
+export default class Dog extends React.Component {
 	state = {
 		adoptedDogs: [],
 		dog: {},

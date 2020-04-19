@@ -37,7 +37,7 @@ class AdoptionPage extends React.Component {
 			userSubmit: true,
 			userLine: [ ...this.state.userLine, this.state.user]
 		})
-		
+
 		setTimeout(this.adoptionCycle, 1000);
 	}
 	
@@ -53,14 +53,19 @@ class AdoptionPage extends React.Component {
 					:
 					this.setState({currentAdopter: user});
 			},4000 * i)
+			
 		})
 		
 	}
 	
 	handleSelect() {
-		this.setState({
-			disable: true
-		})
+		if (this.state.currentAdopter === this.state.user) {
+			this.setState({
+				disable: true
+			})
+		} else {
+		
+		}
 	}
 	
 
@@ -72,8 +77,8 @@ render() {
 			<Users line={this.state.userLine}/>
 			{this.state.userSubmit &&
 			<div className="adoption-display">
-				<Cat onSelect={() => this.handleSelect} disable={this.state.disable}/>
-				<Dog onSelect={() => this.handleSelect} disable={this.state.disable}/>
+				<Cat onSelect={() => this.handleSelect}  disable={this.state.disable}/>
+				<Dog onSelect={() => this.handleSelect}  disable={this.state.disable}/>
 			</div>}
 			
 			{!this.state.selected &&<h2>Currently selecting: {this.state.currentAdopter}</h2>}
