@@ -24,7 +24,7 @@ export default class Cat extends React.Component {
 		
 		PetApiService.adoptDog().then(res => {
 			this.setState({
-				dog: newDog,
+				dog: res.newDog,
 				adoptedDogs: [...this.state.adoptedDogs, res.adopted]
 			})
 		})
