@@ -105,3 +105,13 @@ ul#info > li {
     height: 70vh;
     overflow-y: auto;
   }
+
+  form#username-form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  button {
+    width: 33%;
+  }

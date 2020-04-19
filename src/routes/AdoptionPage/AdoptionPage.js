@@ -52,18 +52,23 @@ class AdoptionPage extends React.Component {
 render() {
 	console.log(this.state.userLine);
 	return (
+		
 		<div className="adoption-page">
 			<Users line={this.state.userLine}/>
+			{this.state.userSubmit &&
 			<div className="adoption-display">
 				<Cat disable={this.state.disable}/>
 				<Dog disable={this.state.disable}/>
-			</div>
+			</div>}
+			
 			<h2>{this.state.currentAdopter}</h2>
 			{!this.state.userSubmit &&
 			<div>
-				<p>Please enter your name to begin</p>
-				<input type='text' onChange={this.handleChange} value={this.state.user} />
-				<button onClick={this.handleSubmit}>begin</button>
+				<form id='username-form' onSubmit={this.handleSubmit}>
+					<label htmlFor="username">Please enter your name to begin</label>
+					<input type='text' name="username" onChange={this.handleChange} value={this.state.user} />
+					<button type='submit'>begin</button>
+				</form>
 				</div>}
 		</div>
 	)

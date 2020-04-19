@@ -5,10 +5,14 @@ img {
 
 .dog {
     width: 45vw;
-    height: 50vh
+    height: 50vh;
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .cat {
+    display: flex;
+    flex-flow: column nowrap;
     width: 40vw;
     height: 50vh;
 }
