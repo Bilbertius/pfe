@@ -12,8 +12,11 @@ img {
     align-items: center;
     justify-content: space-around;
     text-align: center;
-    background-color: white;
+    background-color: rgba(163, 200, 200, 0.73);
     border-radius: 5px;
+    padding: 1vh 1vw;
+
+
 
 }
 p {
