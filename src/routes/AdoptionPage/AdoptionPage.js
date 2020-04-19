@@ -43,7 +43,10 @@ class AdoptionPage extends React.Component {
 	adoptionCycle = () => {
 		this.state.userLine.forEach((user, i) => {
 			setTimeout(() => {
-				user === this.state.user ? this.setState({disable: false, currentAdopter: this.state.user}) : this.setState({currentAdopter: user});
+				user === this.state.user ?
+					this.setState({disable: false, currentAdopter: this.state.user})
+					:
+					this.setState({currentAdopter: user});
 			},4000 * i)
 		})
 		

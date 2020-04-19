@@ -37,10 +37,12 @@ export default class Cat extends React.Component {
 			<div>
 				<h3>{name}</h3>
 				<p>This {age} year old {gender} {breed} cat who was {story} could be yours. </p>
-				<img src={imageURL} alt={description}/>
+				<div class='image-container'>
+					<img src={imageURL} alt={description}/>
+				</div>
 				{!this.props.disable && <button onClick={this.handleAdopt}>Adopt</button>}
 			</div>
-				<ul className='animal'>Previously adopted : {this.state.adoptedCats.map(cat => <li key={cat.name}>{cat.name}</li>)}</ul>
+				{this.state.adoptedCats.length > 0 &&<ul className='animal'>Previously adopted : {this.state.adoptedCats.map(cat => <li key={cat.name}>{cat.name}</li>)}</ul>}
 			</div>
 		)
 	}

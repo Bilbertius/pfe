@@ -3,23 +3,22 @@ img {
     width: auto;
 }
 
-.dog {
-    width: 45vw;
-    height: 50vh;
-    display: flex;
-    flex-flow: column nowrap;
-}
-
-.cat {
-    display: flex;
-    flex-flow: column nowrap;
+.dog, .cat {
     width: 40vw;
     height: 50vh;
-}
+    margin: 5vh 5vw;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
 
+}
 p {
     height: 15vh;
-    text-align: left;
+    text-align:center;
     width: 30vw;
 }
 
@@ -39,4 +38,10 @@ p {
 
 ul.animal {
     list-style-type: none;
+}
+
+.image-container{
+    border: 2px solid gray;
+    height: 20vh;
+    width: 30vw;
 }
