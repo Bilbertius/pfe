@@ -19,8 +19,7 @@ export default class Cat extends React.Component {
 		})
 	}
 	handleAdopt = (e) =>{
-		e.preventDefault();
-		
+
 		PetApiService.adoptCat().then(res => {
 			this.setState({
 				cat: res.newCat,
@@ -40,7 +39,7 @@ export default class Cat extends React.Component {
 				<div class='image-container'>
 					<img src={imageURL} alt={description}/>
 				</div>
-				{!this.props.disable && <button onClick={this.handleAdopt}>Adopt</button>}
+				{!this.props.disable && <button onClick={this.handleAdopt && this.props.onSelect}>Adopt</button>}
 			</div>
 				{this.state.adoptedCats.length > 0 &&<ul className='animal'>Previously adopted : {this.state.adoptedCats.map(cat => <li key={cat.name}>{cat.name}</li>)}</ul>}
 			</div>

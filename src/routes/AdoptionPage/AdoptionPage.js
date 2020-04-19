@@ -9,6 +9,7 @@ class AdoptionPage extends React.Component {
 	state={
 		user: '',
 		userSubmit: false,
+		selected: false,
 		disable: true,
 		userLine: [],
 		currentAdopter: ''
@@ -41,16 +42,27 @@ class AdoptionPage extends React.Component {
 	}
 	
 	adoptionCycle = () => {
+		
 		this.state.userLine.forEach((user, i) => {
 			setTimeout(() => {
 				user === this.state.user ?
-					this.setState({disable: false, currentAdopter: this.state.user})
+					this.setState({
+						disable: false,
+						currentAdopter: this.state.user,
+					})
 					:
 					this.setState({currentAdopter: user});
 			},4000 * i)
 		})
 		
 	}
+	
+	handleSelect() {
+		this.setState({
+			disable: true
+		})
+	}
+	
 
 render() {
 	console.log(this.state.userLine);
@@ -60,11 +72,12 @@ render() {
 			<Users line={this.state.userLine}/>
 			{this.state.userSubmit &&
 			<div className="adoption-display">
-				<Cat disable={this.state.disable}/>
-				<Dog disable={this.state.disable}/>
+				<Cat onSelect={() => this.handleSelect} disable={this.state.disable}/>
+				<Dog onSelect={() => this.handleSelect} disable={this.state.disable}/>
 			</div>}
 			
-			<h2>{this.state.currentAdopter}</h2>
+			{!this.state.selected &&<h2>Currently selecting: {this.state.currentAdopter}</h2>}
+			{this.state.selected && <p>Congratulations. You have successfully picked your new best friend!!</p>}
 			{!this.state.userSubmit &&
 			<div>
 				<form id='username-form' onSubmit={this.handleSubmit}>
