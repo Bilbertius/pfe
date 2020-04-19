@@ -6,7 +6,7 @@ Petful adoption is a First in First out pet adoptation app. Users create an acco
 Kraig Williams
 William MAcNeil
 
-Technology Used
+## Technology Used
 
-React
-Now (deployement)
+ - React
+ - Now (deployement)
