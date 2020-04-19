@@ -56,13 +56,8 @@ const PetApiService = {
       }
     });
     return !res.ok ?res.json().then(e => Promise.reject(e)) : res.json();
-  },
-  
-  
-  async refreshUsers() {
-    const res = await fetch(`${config.API_ENDPOINT}/people`);
-    return !res.ok ?res.json().then(e => Promise.reject(e)) : res.json();
-    
   }
+  
+  
 };
 export default PetApiService;
