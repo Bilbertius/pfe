@@ -89,12 +89,8 @@ class AdoptionPage extends React.Component {
 		PetApiService.adoptCat().then(res => {
 			this.setState({
 				cat : res.cat,
+				adopter: this.state.currentAdopter,
 				adoptedCats: [...this.state.adoptedCats, res.adopted]
-			})
-		})
-		PetApiService.getCat().then(res => {
-			this.setState({
-				cat: res.cat
 			})
 		})
 	}
@@ -104,14 +100,11 @@ class AdoptionPage extends React.Component {
 		PetApiService.adoptDog().then(res => {
 			this.setState({
 				dog: res.newDog,
+				adopter: this.state.currentAdopter,
 				adoptedDogs: [...this.state.adoptedDogs, res.adopted]
 			})
 		})
-		PetApiService.getDog().then(res => {
-			this.setState({
-				dog: res.newDog
-			})
-		})
+		
 	}
 
 render() {
@@ -122,13 +115,13 @@ render() {
 			<Users line={this.state.userLine}/>
 			{this.state.userSubmit &&
 			<div className="adoption-display">
-				<Cat cat={this.state.cat} onAdopt={() => this.handleAdoptCat}   disable={this.state.disable}/>
+				<Cat cat={this.state.cat} onAdopt={this.handleAdoptCat}   disable={this.state.disable}/>
 				<ul>
 				{adoptedList && adoptedList.map((pet, i) => (
 					<li key={i}>{pet.name} adopted by {this.state.adopter}</li>
 				))}
 				</ul>
-				<Dog dog={this.state.dog} onAdopt={() => this.handleAdoptDog}   disable={this.state.disable}/>
+				<Dog dog={this.state.dog} onAdopt={this.handleAdoptDog}   disable={this.state.disable}/>
 			</div>}
 			
 			{!this.state.selected &&<h2>Currently selecting: {this.state.currentAdopter}</h2>}
