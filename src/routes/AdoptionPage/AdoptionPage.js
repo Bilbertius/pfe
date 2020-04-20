@@ -71,7 +71,7 @@ class AdoptionPage extends React.Component {
 					let rdn = new Date().getMilliseconds();
 					rdn % 2 ? this.handleAdoptCat() : this.handleAdoptDog();
 				}
-			}, 4000 * i)
+			}, 7000 * i)
 			
 		})
 		
@@ -109,7 +109,7 @@ class AdoptionPage extends React.Component {
 				this.setState({
 					dog: res.newDog,
 					adopter: this.state.currentAdopter,
-					adoptedDogs: [...this.state.adoptedDogs, res.adopted]
+					adoptedDogs: [...this.state.adoptedList, res.adopted]
 				})
 			} else {
 				this.setState({
@@ -132,7 +132,7 @@ class AdoptionPage extends React.Component {
 				{this.state.userSubmit &&
 				<div className="adoption-display">
 					<Cat cat={this.state.cat} onAdopt={this.handleAdoptCat} disable={this.state.disable}/>
-					<ul>
+					<ul className='adopted-list'>
 						{adoptedList && adoptedList.map((pet, i) => (
 							<li key={i}>{pet.name} adopted by {this.state.adopter}</li>
 						))}
