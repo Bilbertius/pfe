@@ -116,4 +116,14 @@ ul#info > li {
   .adopted-list {
     list-style-type: none;
     background-color: aquamarine;
+    border-radius: 10px;
+    height: 35vh;
+    text-align: left;
+  }
+
+  .adoptedlist li {
+    border-bottom: 1px solid black;
+    margin-bottom: 2px;
+    padding: 1vh 1vw;
+
   }
