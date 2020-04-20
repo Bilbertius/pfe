@@ -69,7 +69,7 @@ class AdoptionPage extends React.Component {
 				} else {
 					this.setState({currentAdopter: user});
 					let rdn = new Date().getMilliseconds();
-					rdn % 2 ? this.handleAdoptCat(e) : this.handleAdoptDog(e);
+					rdn % 2 ? this.handleAdoptCat() : this.handleAdoptDog();
 				}
 			}, 7000 * i)
 			
@@ -78,7 +78,7 @@ class AdoptionPage extends React.Component {
 	}
 	
 	
-	handleAdoptCat = () => {
+	handleAdoptCat = (e) => {
 		e.preventDefault();
 		
 		PetApiService.adoptCat().then(res => {
@@ -103,7 +103,7 @@ class AdoptionPage extends React.Component {
 	
 	
 	
-	handleAdoptDog = () => {
+	handleAdoptDog = (e) => {
 		e.preventDefault();
 		
 		PetApiService.adoptDog().then(res => {
