@@ -104,3 +104,9 @@ ul#info > li {
   button {
     width: 33%;
   }
+
+
+  .user-list {
+    display: flex;
+    background-color: hsla(210, 80%, 40%);
+  }

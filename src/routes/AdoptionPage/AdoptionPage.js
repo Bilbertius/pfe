@@ -78,8 +78,8 @@ class AdoptionPage extends React.Component {
 	}
 	
 	
-	handleAdoptCat = (e) => {
-		e.preventDefault();
+	handleAdoptCat = () => {
+		
 		
 		PetApiService.adoptCat().then(res => {
 			if (this.state.adoptedList.length) {
@@ -103,15 +103,15 @@ class AdoptionPage extends React.Component {
 	
 	
 	
-	handleAdoptDog = (e) => {
-		e.preventDefault();
+	handleAdoptDog = () => {
+	
 		
 		PetApiService.adoptDog().then(res => {
 			if (this.state.adoptedList.length) {
 				this.setState({
 					dog: res.newDog,
 					adopter: this.state.currentAdopter,
-					adoptedDogs: [...this.state.adoptedList, res.adopted]
+					adoptedList: [...this.state.adoptedList, res.adopted]
 				})
 			} else {
 				this.setState({
@@ -130,7 +130,7 @@ class AdoptionPage extends React.Component {
 		return (
 			
 			<div className="adoption-page">
-				<Users line={this.state.userLine}/>
+				<Users className='user-line' line={this.state.userLine}/>
 				{this.state.userSubmit &&
 				<div className="adoption-display">
 					<Cat cat={this.state.cat} onAdopt={this.handleAdoptCat} disable={this.state.disable}/>

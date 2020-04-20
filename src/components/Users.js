@@ -2,13 +2,12 @@ import React from 'react';
 
 
 export default class Users extends React.Component {
-	state = {
 	
-		users: [],
-		prevAdopter: {
-			name : '',
-			choice: {}
-		}
+	constructor(props) {
+		super(props)
+			this.state = {
+				users : []
+			}
 	}
 	
 	
@@ -24,12 +23,12 @@ export default class Users extends React.Component {
 		
 		return (
 			<div className="user-list">
-			<h3>Users:</h3>
-			<ul>
-				{this.state.users.map(user => (
-					<li key={user}>{user}</li>
-				))}
-			</ul>
+				<h3>Users:</h3>
+					<ul>
+						{this.state.users.map(user => (
+							<li key={user}>{user}</li>
+						))}
+					</ul>
 			</div>
 		)
 	}
