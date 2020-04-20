@@ -136,7 +136,7 @@ class AdoptionPage extends React.Component {
 				<div className="adoption-display">
 					<Cat cat={this.state.cat} onAdopt={this.handleAdoptCat} disable={this.state.disable}/>
 					<ul className='adopted-list'>
-						{this.state.adoptedList.length && this.state.adoptedList.map((pet, i) => (
+						{this.state.adoptedList && this.state.adoptedList.map((pet, i) => (
 							<li key={i}>{pet.name} adopted by {this.state.userLine[i]}</li>
 						))}
 					</ul>
