@@ -122,6 +122,12 @@ class AdoptionPage extends React.Component {
 				})
 			}
 		})
+		if (this.state.currentAdopter === this.state.user) {
+			this.setState({
+				disable: true,
+				selected: true
+			})
+		}
 		
 	}
 	
@@ -144,7 +150,7 @@ class AdoptionPage extends React.Component {
 				</div>}
 				
 				{!this.state.selected && <h2>Currently selecting: {this.state.currentAdopter}</h2>}
-				{this.state.selected && <p>Congratulations. You have successfully picked your new best friend!!</p>}
+				{this.state.selected && <p>Congratulations. You {this.state.user} have successfully adopted your new best friend !!</p>}
 				{!this.state.userSubmit &&
 				<div>
 					<form id='username-form' onSubmit={this.handleSubmit}>
