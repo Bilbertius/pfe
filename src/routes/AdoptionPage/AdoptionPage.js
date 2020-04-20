@@ -109,7 +109,7 @@ class AdoptionPage extends React.Component {
 		PetApiService.adoptDog().then(res => {
 			if (this.state.adoptedList.length) {
 				this.setState({
-					dog: res.newDog,
+					dog: res.dog,
 					adopter: this.state.currentAdopter,
 					adoptedList: [...this.state.adoptedList, res.adopted]
 				})
