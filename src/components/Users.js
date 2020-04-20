@@ -2,7 +2,7 @@ import React from 'react';
 
 
 export default class Users extends React.Component {
-	
+	/*
 	constructor(props) {
 		super(props)
 			this.state = {
@@ -17,7 +17,7 @@ export default class Users extends React.Component {
 		})
 	}
 	
-	
+	*/
 	
 	render() {
 		
@@ -25,7 +25,7 @@ export default class Users extends React.Component {
 			<div className="user-list">
 				<h3>Users:</h3>
 					<ul>
-						{this.state.users.map(user => (
+						{this.props.line.map(user => (
 							<li key={user}>{user}</li>
 						))}
 					</ul>

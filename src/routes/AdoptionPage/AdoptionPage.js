@@ -12,7 +12,7 @@ class AdoptionPage extends React.Component {
 		userSubmit: false,
 		selected: false,
 		disable: true,
-		userLine: [],
+		userLine: ['test1','test2'],
 		currentAdopter: '',
 		dog: {},
 		cat: {},
@@ -70,6 +70,7 @@ class AdoptionPage extends React.Component {
 					this.setState({currentAdopter: user});
 					let rdn = new Date().getMilliseconds();
 					rdn % 2 ? this.handleAdoptCat() : this.handleAdoptDog();
+					
 				}
 			}, 7000 * i)
 			
@@ -126,16 +127,16 @@ class AdoptionPage extends React.Component {
 	
 	
 	render() {
-		const {adoptedList} = this.state.adoptedList;
+		;
 		return (
 			
 			<div className="adoption-page">
-				<Users className='user-line' line={this.state.userLine}/>
+				{this.state.userSubmit && <Users className='user-line' line={this.state.userLine}/>}
 				{this.state.userSubmit &&
 				<div className="adoption-display">
 					<Cat cat={this.state.cat} onAdopt={this.handleAdoptCat} disable={this.state.disable}/>
 					<ul className='adopted-list'>
-						{adoptedList && adoptedList.map((pet, i) => (
+						{this.state.adoptedList.length && this.state.adoptedList.map((pet, i) => (
 							<li key={i}>{pet.name} adopted by {this.state.adopter}</li>
 						))}
 					</ul>

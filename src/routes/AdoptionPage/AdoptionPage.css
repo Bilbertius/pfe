@@ -110,3 +110,7 @@ ul#info > li {
     display: flex;
     background-color: hsla(210, 80%, 40%);
   }
+
+  .adopted-list {
+    border: 2px solid black;
+  }
