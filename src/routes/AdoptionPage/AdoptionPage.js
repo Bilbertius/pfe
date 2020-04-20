@@ -1,29 +1,46 @@
 import React from 'react';
 import PetApiService from '../../services/pet-api-service';
 import './AdoptionPage.css';
-import Cat from '../../components/Cat.js';
-import Dog from '../../components/Dog.js';
+import Cat from '../../components/Cat';
+import Dog from '../../components/Dog';
 import Users from '../../components/Users';
 
 class AdoptionPage extends React.Component {
 	state={
 		user: '',
+		adopter: '',
 		userSubmit: false,
 		selected: false,
 		disable: true,
 		userLine: [],
-		currentAdopter: ''
+		currentAdopter: '',
+		dog: {},
+		cat: {},
+		adoptedList: []
 	}
 	
 	componentDidMount() {
-
+		
 		PetApiService.listUsers().then(res => {
 			this.setState({
-				userLine: res.userLine
+				userLine: res.userLine,
+				prevAdopter : res.adopter
 			})
 		})
-		
+	
+		PetApiService.getDog().then(res => {
+				this.setState({
+					dog: res.dog
+				})
+			})
+		PetApiService.getCat().then(res => {
+			this.setState({
+				cat: res.cat
+			})
+		})
 	}
+		
+	
 	
 	handleChange = e => {
 		e.preventDefault();
@@ -45,40 +62,73 @@ class AdoptionPage extends React.Component {
 		
 		this.state.userLine.forEach((user, i) => {
 			setTimeout(() => {
-				user === this.state.user ?
+				if(user === this.state.user) {
 					this.setState({
 						disable: false,
 						currentAdopter: this.state.user,
 					})
-					:
+				} else {
 					this.setState({currentAdopter: user});
+					let rdn = new Date().getMilliseconds();
+					
+				}
+				
+				
 			},4000 * i)
 			
 		})
 		
 	}
 	
-	handleSelect() {
-		if (this.state.currentAdopter === this.state.user) {
-			this.setState({
-				disable: true
-			})
-		} else {
-		
-		}
-	}
 	
+	
+	
+	handleAdoptCat = (e) =>{
+		e.preventDefault();
+		
+		PetApiService.adoptCat().then(res => {
+			this.setState({
+				cat : res.cat,
+				adoptedCats: [...this.state.adoptedCats, res.adopted]
+			})
+		})
+		PetApiService.getCat().then(res => {
+			this.setState({
+				cat: res.cat
+			})
+		})
+	}
+	handleAdoptDog = (e) =>{
+		e.preventDefault();
+		
+		PetApiService.adoptDog().then(res => {
+			this.setState({
+				dog: res.newDog,
+				adoptedDogs: [...this.state.adoptedDogs, res.adopted]
+			})
+		})
+		PetApiService.getDog().then(res => {
+			this.setState({
+				dog: res.newDog
+			})
+		})
+	}
 
 render() {
-	console.log(this.state.userLine);
+	const { adoptedList } = this.state.adoptedList;
 	return (
 		
 		<div className="adoption-page">
 			<Users line={this.state.userLine}/>
 			{this.state.userSubmit &&
 			<div className="adoption-display">
-				<Cat onSelect={() => this.handleSelect}  disable={this.state.disable}/>
-				<Dog onSelect={() => this.handleSelect}  disable={this.state.disable}/>
+				<Cat cat={this.state.cat} onAdopt={() => this.handleAdoptCat}   disable={this.state.disable}/>
+				<ul>
+				{adoptedList && adoptedList.map((pet, i) => (
+					<li key={i}>{pet.name} adopted by {this.state.adopter}</li>
+				))}
+				</ul>
+				<Dog dog={this.state.dog} onAdopt={() => this.handleAdoptDog}   disable={this.state.disable}/>
 			</div>}
 			
 			{!this.state.selected &&<h2>Currently selecting: {this.state.currentAdopter}</h2>}

@@ -2,8 +2,8 @@ import React from 'react';
 import PetApiService from '../services/pet-api-service';
 import './Animal.css';
 
-export default class Cat extends React.Component {
-	state = {
+function Cat(props)  {
+	/*state = {
 		adoptedCats: [],
 		cat: {},
 		error: null,
@@ -33,22 +33,26 @@ export default class Cat extends React.Component {
 			})
 		})
 	}
+	*/
 	
-	render() {
-		const {age, breed, description, name, gender, story, imageURL } = this.state.cat;
+
+		const {age, breed, description, name, gender, story, imageURL } = props.cat;
 		return (
 			<div className="cat">
 			
 			<div>
 				<h3>{name}</h3>
 				<p>This {age} year old {gender} {breed} cat who was {story} could be yours. </p>
-				<div class='image-container'>
+				<div className='image-container'>
 					<img src={imageURL} alt={description}/>
 				</div>
-				{!this.props.disable && <button onClick={this.handleAdopt}>Adopt</button>}
-			</div>
-				{this.state.adoptedCats.length > 0 &&<ul className='animal'>Previously adopted : {this.state.adoptedCats.map(cat => <li key={cat.name}>{cat.name}</li>)}</ul>}
+				{!props.disable && <button onClick={props.onAdopt}>Adopt</button>}
+				{/*</div>
+				{this.p.adoptedCats.length > 0 &&<ul className='animal'>Previously adopted : {this.state.adoptedCats.map(cat => <li key={cat.name}>{cat.name}</li>)}</ul>}
+			*/}</div>
 			</div>
 		)
-	}
+	
 }
+
+export default Cat;

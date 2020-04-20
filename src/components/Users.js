@@ -5,8 +5,20 @@ export default class Users extends React.Component {
 	state = {
 	
 		users: [],
-		currentAdopter: ''
+		prevAdopter: {
+			name : '',
+			choice: {}
+		}
 	}
+	
+	
+	componentDidMount() {
+		this.setState({
+			users: [...this.props.line]
+		})
+	}
+	
+	
 	
 	render() {
 		
@@ -14,7 +26,7 @@ export default class Users extends React.Component {
 			<div className="user-list">
 			<h3>Users:</h3>
 			<ul>
-				{this.props.line.map(user => (
+				{this.state.users.map(user => (
 					<li key={user}>{user}</li>
 				))}
 			</ul>
