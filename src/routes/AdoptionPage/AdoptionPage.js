@@ -127,7 +127,7 @@ class AdoptionPage extends React.Component {
 	
 	
 	render() {
-		;
+		
 		return (
 			
 			<div className="adoption-page">
