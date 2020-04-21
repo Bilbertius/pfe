@@ -153,7 +153,7 @@ class AdoptionPage extends React.Component {
 				</div>}
 				
 				{this.state.userSubmit && !this.state.selected && <h2>Currently selecting: {this.state.currentAdopter}</h2>}
-				{this.state.selected && <p>Congratulations {this.state.user}. You have successfully adopted your new best friend !!</p>}
+				{this.state.selected && <div className='adoption-message'><p>Congratulations {this.state.user}. You have successfully adopted your new best friend !!</p></div>}
 				{!this.state.userSubmit &&
 				<div>
 					<form id='username-form' onSubmit={this.handleSubmit}>
