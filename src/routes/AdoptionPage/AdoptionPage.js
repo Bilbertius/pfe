@@ -8,7 +8,7 @@ import Users from '../../components/Users';
 class AdoptionPage extends React.Component {
 	state = {
 		user: '',
-		adopter: '',
+		adopterWait: null,
 		userSubmit: false,
 		selected: false,
 		disable: true,
@@ -24,7 +24,8 @@ class AdoptionPage extends React.Component {
 		PetApiService.listUsers().then(res => {
 			this.setState({
 				userLine: res.userLine,
-				currentAdopter: res.adopter
+				currentAdopter: res.adopter,
+				adopterWait: res.userLine.length
 			})
 		})
 		
@@ -68,7 +69,10 @@ class AdoptionPage extends React.Component {
 					})
 				} else {
 				
-					this.setState({currentAdopter: user});
+					this.setState({
+						adopterWait: this.state.adopterWait - 1,
+						currentAdopter : user
+					});
 					let rdn = new Date().getMilliseconds();
 					rdn % 2 ? this.handleAdoptCat() : this.handleAdoptDog();
 					
@@ -101,6 +105,10 @@ class AdoptionPage extends React.Component {
 			}
 			
 		})
+	}
+	
+	renderUserWait() {
+		let wait = this.state.userLength
 	}
 	
 	
@@ -151,7 +159,7 @@ class AdoptionPage extends React.Component {
 					<Dog dog={this.state.dog} onAdopt={this.handleAdoptDog} disable={this.state.disable}/>
 				</div>}
 				
-				
+				{!this.state.disable && <p>Please be patient, only {this.state.adopterWait} in front of you</p>}
 				{this.state.selected && <div className='adoption-message'><p>Congratulations {this.state.user}. You have successfully adopted your new best friend !!</p></div>}
 				{!this.state.userSubmit &&
 				<div>
