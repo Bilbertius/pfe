@@ -1,6 +1,7 @@
 import React from 'react';
 import PetApiService from '../../services/pet-api-service';
 import './AdoptionPage.css';
+import { Link } from 'react-router-dom';
 import Cat from '../../components/Cat';
 import Dog from '../../components/Dog';
 import Users from '../../components/Users';
@@ -158,6 +159,8 @@ class AdoptionPage extends React.Component {
 				{selected &&
 					<div className='adoption-message'>
 						<p>Congratulations {user}! You have successfully adopted your new best friend {adoptedList[adoptedList.length - 1].name}</p>
+						<img src={adoptedList[adoptedList.length - 1].imgURL} alt="Your new pet"/>
+						<Link to="/">Exit</Link>
 					</div>}
 				{!userSubmit &&
 				<div>
