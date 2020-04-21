@@ -24,7 +24,7 @@ class AdoptionPage extends React.Component {
 		PetApiService.listUsers().then(res => {
 			this.setState({
 				userLine: res.userLine,
-				prevAdopter: res.adopter
+				currentAdopter: res.adopter
 			})
 		})
 		
