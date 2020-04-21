@@ -134,5 +134,8 @@ ul#info > li {
     left: 30vw;
     width: 40vw;
     height: 40vw;
+    z-index: 10;
+    background-color: skyblue;
+    color: #172d41;
 
   }
