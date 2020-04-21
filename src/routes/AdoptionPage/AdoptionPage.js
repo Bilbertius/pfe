@@ -67,9 +67,7 @@ class AdoptionPage extends React.Component {
 						currentAdopter: this.state.user,
 					})
 				} else {
-					console.log('i:', i);
-					console.log(`Adopter: ${this.state.adopter}`)
-					console.log(`Current Adopter${this.state.currentAdopter}`)
+				
 					this.setState({currentAdopter: user});
 					let rdn = new Date().getMilliseconds();
 					rdn % 2 ? this.handleAdoptCat() : this.handleAdoptDog();
@@ -86,7 +84,7 @@ class AdoptionPage extends React.Component {
 		
 		
 		PetApiService.adoptCat().then(res => {
-			if (this.state.adoptedList.length) {
+			if (this.state.adoptedList.length > 0) {
 				this.setState({
 					cat: res.cat,
 					adopter: this.state.currentAdopter,
@@ -120,7 +118,7 @@ class AdoptionPage extends React.Component {
 			} else {
 				this.setState({
 					dog: res.dog,
-					adopter: this.state.currentAdopter,
+					adopter: adopter
 					adoptedList: [res.adopted]
 				})
 			}
@@ -144,15 +142,16 @@ class AdoptionPage extends React.Component {
 				{this.state.userSubmit &&
 				<div className="adoption-display">
 					<Cat cat={this.state.cat} onAdopt={this.handleAdoptCat} disable={this.state.disable}/>
+					<h3>Recently adopted</h3>
 					<ul className='adopted-list'>
 						{this.state.adoptedList && this.state.adoptedList.map((pet, i) => (
-							<li key={i}>{pet.name} adopted by {this.state.userLine[i]}</li>
+							<li key={i}>{this.state.currentAdopter} adopted {pet.name} }</li>
 						))}
 					</ul>
 					<Dog dog={this.state.dog} onAdopt={this.handleAdoptDog} disable={this.state.disable}/>
 				</div>}
 				
-				{this.state.userSubmit && !this.state.selected && <h2>Currently selecting: {this.state.currentAdopter}</h2>}
+				{this.state.userSubmit && !this.state.selected && <h2>Currently selecting: {this.state.adopter}</h2>}
 				{this.state.selected && <div className='adoption-message'><p>Congratulations {this.state.user}. You have successfully adopted your new best friend !!</p></div>}
 				{!this.state.userSubmit &&
 				<div>
