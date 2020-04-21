@@ -150,7 +150,7 @@ class AdoptionPage extends React.Component {
 					<h3>Recent adoptions: </h3>
 					<ul className='adopted-list'>
 						{this.state.adoptedList && this.state.adoptedList.map((pet, i) => (
-							<li key={i}>{this.state.currentAdopter} adopted {pet.name} }</li>
+							<li key={i}>{this.state.userLine[i]} adopted {pet.name} </li>
 						))}
 					</ul>
 					<Dog dog={this.state.dog} onAdopt={this.handleAdoptDog} disable={this.state.disable}/>
