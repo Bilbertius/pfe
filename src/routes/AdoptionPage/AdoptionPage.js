@@ -99,11 +99,13 @@ class AdoptionPage extends React.Component {
 					cat: res.cat,
 					adoptedList: [res.adopted]
 				})
-				
-				
 			}
-			
 		})
+		if (this.state.currentAdopter === this.state.user) {
+			this.setState({
+				disable: true,
+				selected: true
+			})
 	}
 	
 
@@ -155,7 +157,7 @@ class AdoptionPage extends React.Component {
 					<Dog dog={dog} onAdopt={this.handleAdoptDog} disable={disable}/>
 				</div>}
 				
-				{disable && <div className='wait-message'><p>Please be patient, only {adopterWait} ahead of you!</p></div>}
+				{disable && userSubmit && <div className='wait-message'><p>Please be patient, only {adopterWait} ahead of you!</p></div>}
 				{selected &&
 					<div className='adoption-message'>
 						<p>Congratulations {user}! You have successfully adopted your new best friend {adoptedList[adoptedList.length - 1].name}</p>
