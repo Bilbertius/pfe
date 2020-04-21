@@ -105,12 +105,12 @@ ul#info > li {
     width: 33%;
   }
   input {
-    width: 75%%;
+    width: 75%;
   }
 
   .user-list {
     display: flex;
-    background-color: hsla(210, 80%, 40%);
+    background-color: hsla(210, 80%, 40%, 0.8);
   }
 
   .adopted-list {
