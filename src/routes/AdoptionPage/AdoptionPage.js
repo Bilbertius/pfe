@@ -161,11 +161,10 @@ class AdoptionPage extends React.Component {
 					<Dog dog={dog} onAdopt={this.handleAdoptDog} disable={disable}/>
 				</div>}
 				
-				{adopterWait > 0  && <div className='wait-message'><p>Please be patient, only {adopterWait} ahead of you!</p></div>}
+				{(userSubmit && disable)  && <div className='wait-message'><p>Please be patient, only {adopterWait} ahead of you!</p></div>}
 				{selected &&
 					<div className='adoption-message'>
 						<p>Congratulations {user}! You have successfully adopted your new best friend {adoptedList[adoptedList.length - 1].name}</p>
-						<img src={adoptedList[adoptedList.length - 1].imgURL} alt="Your new pet"/>
 						<Link to="/">Exit</Link>
 					</div>}
 				{!userSubmit &&
