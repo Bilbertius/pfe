@@ -175,8 +175,6 @@ class AdoptionPage extends React.Component {
 			</div>
 		)
 	}
-	
-	
 }
 
 export default AdoptionPage;

@@ -104,6 +104,9 @@ ul#info > li {
 
   .adoption-message {
     position:absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     top: 20vh;
     left: 30vw;
     width: 40vw;
@@ -112,10 +115,17 @@ ul#info > li {
     z-index: 10;
     background-color: skyblue;
     color: #172d41;
-    font-size: 40px;
+    font-size: 30px;
     text-align: center;
 
 
+  }
+
+  .adoption-message a {
+    border: 2px solid #1efabb;
+    background-color: #4298b9;
+    padding: 1vh 1vw;
+    border-radius: 5px;
   }
 
   .wait-message {
