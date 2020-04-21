@@ -91,13 +91,11 @@ class AdoptionPage extends React.Component {
 			if (this.state.adoptedList.length > 0) {
 				this.setState({
 					cat: res.cat,
-					
 					adoptedList: [...this.state.adoptedList, res.adopted]
 				})
 			} else {
 				this.setState({
 					cat: res.cat,
-					
 					adoptedList: [res.adopted]
 				})
 				
@@ -139,30 +137,33 @@ class AdoptionPage extends React.Component {
 	
 	
 	render() {
-		
+		const {user, adopterWait, userSubmit, selected, disable, userLine, currentAdopter, dog, cat, adoptedList} = this.state;
 		return (
 			
 			<div className="adoption-page">
-				{this.state.userSubmit && <Users className='user-line' line={this.state.userLine}/>}
-				{this.state.userSubmit &&
+				{userSubmit && <Users className='user-line' line={userLine}/>}
+				{userSubmit &&
 				<div className="adoption-display">
-					<Cat cat={this.state.cat} onAdopt={this.handleAdoptCat} disable={this.state.disable}/>
+					<Cat cat={cat} onAdopt={this.handleAdoptCat} disable={disable}/>
 					<h3>Recent adoptions: </h3>
 					<ul className='adopted-list'>
-						{this.state.adoptedList && this.state.adoptedList.map((pet, i) => (
-							<li key={i}>{this.state.userLine[i]} adopted {pet.name} </li>
+						{this.state.adoptedList && adoptedList.map((pet, i) => (
+							<li key={i}>{userLine[i]} adopted {pet.name} </li>
 						))}
 					</ul>
-					<Dog dog={this.state.dog} onAdopt={this.handleAdoptDog} disable={this.state.disable}/>
+					<Dog dog={dog} onAdopt={this.handleAdoptDog} disable={disable}/>
 				</div>}
 				
-				{this.state.disable && <div className='wait-message'><p>Please be patient, only {this.state.adopterWait} in front of you</p></div>}
-				{this.state.selected && <div className='adoption-message'><p>Congratulations {this.state.user}. You have successfully adopted your new best friend !!</p></div>}
-				{!this.state.userSubmit &&
+				{disable && <div className='wait-message'><p>Please be patient, only {adopterWait} ahead of you!</p></div>}
+				{selected &&
+					<div className='adoption-message'>
+						<p>Congratulations {user}! You have successfully adopted your new best friend {adoptedList[adoptedList.length - 1].name}</p>
+					</div>}
+				{!userSubmit &&
 				<div>
 					<form id='username-form' onSubmit={this.handleSubmit}>
 						<label htmlFor="username">Please enter your name to begin</label>
-						<input type='text' name="username" onChange={this.handleChange} value={this.state.user}/>
+						<input type='text' name="username" onChange={this.handleChange} value={user}/>
 						<button type='submit'>begin</button>
 					</form>
 				</div>}
