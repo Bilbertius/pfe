@@ -133,3 +133,8 @@ ul#info > li {
     display: flex;
     justify-content: center;
   }
+
+  .recent-adoptions {
+    display: flex;
+    flex-direction: column;
+  }

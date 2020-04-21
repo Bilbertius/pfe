@@ -56,7 +56,7 @@ class AdoptionPage extends React.Component {
 			userLine: [...this.state.userLine, this.state.user]
 		})
 		
-		setTimeout(this.adoptionCycle, 5000);
+		setTimeout(this.adoptionCycle, 1000);
 	}
 	
 	adoptionCycle = () => {
@@ -148,16 +148,20 @@ class AdoptionPage extends React.Component {
 				{userSubmit &&
 				<div className="adoption-display">
 					<Cat cat={cat} onAdopt={this.handleAdoptCat} disable={disable}/>
-					<h3>Recent adoptions: </h3>
-					<ul className='adopted-list'>
-						{this.state.adoptedList && adoptedList.map((pet, i) => (
-							<li key={i}>{userLine[i]} adopted {pet.name} </li>
-						))}
-					</ul>
+					
+					<div className='recent-adoptions'>
+						<h3>Recent adoptions: </h3>
+						<ul className='adopted-list'>
+							{this.state.adoptedList && adoptedList.map((pet, i) => (
+								<li key={i}>{userLine[i]} adopted {pet.name} </li>
+							))}
+						</ul>
+					</div>
+					
 					<Dog dog={dog} onAdopt={this.handleAdoptDog} disable={disable}/>
 				</div>}
 				
-				{disable  && <div className='wait-message'><p>Please be patient, only {adopterWait} ahead of you!</p></div>}
+				{adopterWait > 0  && <div className='wait-message'><p>Please be patient, only {adopterWait} ahead of you!</p></div>}
 				{selected &&
 					<div className='adoption-message'>
 						<p>Congratulations {user}! You have successfully adopted your new best friend {adoptedList[adoptedList.length - 1].name}</p>
