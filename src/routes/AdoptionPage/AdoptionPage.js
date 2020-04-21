@@ -56,7 +56,7 @@ class AdoptionPage extends React.Component {
 			userLine: [...this.state.userLine, this.state.user]
 		})
 		
-		setTimeout(this.adoptionCycle, 1000);
+		setTimeout(this.adoptionCycle, 5000);
 	}
 	
 	adoptionCycle = () => {
@@ -157,7 +157,7 @@ class AdoptionPage extends React.Component {
 					<Dog dog={dog} onAdopt={this.handleAdoptDog} disable={disable}/>
 				</div>}
 				
-				{disable && userSubmit && <div className='wait-message'><p>Please be patient, only {adopterWait} ahead of you!</p></div>}
+				{disable  && <div className='wait-message'><p>Please be patient, only {adopterWait} ahead of you!</p></div>}
 				{selected &&
 					<div className='adoption-message'>
 						<p>Congratulations {user}! You have successfully adopted your new best friend {adoptedList[adoptedList.length - 1].name}</p>
