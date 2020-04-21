@@ -131,9 +131,10 @@ ul#info > li {
   .adoption-message {
     position:absolute;
     top: 20vh;
-    left: 30vw;
-    width: 40vw;
-    height: 40vw;
+    left: 20vw;
+    width: 60vw;
+    border-radius: 15px;
+    height: 60vw;
     z-index: 10;
     background-color: skyblue;
     color: #172d41;
