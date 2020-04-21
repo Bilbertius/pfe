@@ -151,7 +151,7 @@ class AdoptionPage extends React.Component {
 					<Dog dog={this.state.dog} onAdopt={this.handleAdoptDog} disable={this.state.disable}/>
 				</div>}
 				
-				{this.state.userSubmit && !this.state.selected && <h2>Currently selecting: {this.state.adopter}</h2>}
+				{this.state.userSubmit && !this.state.selected && <h2>Currently selecting: {this.state.currentAdopter}</h2>}
 				{this.state.selected && <div className='adoption-message'><p>Congratulations {this.state.user}. You have successfully adopted your new best friend !!</p></div>}
 				{!this.state.userSubmit &&
 				<div>
