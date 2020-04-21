@@ -121,7 +121,7 @@ ul#info > li {
     text-align: left;
   }
 
-  .adoptedlist li {
+  .adopted-list li {
     border-bottom: 1px solid black;
     margin-bottom: 2px;
     padding: 1vh 1vw;

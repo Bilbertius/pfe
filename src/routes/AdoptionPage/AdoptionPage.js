@@ -12,7 +12,7 @@ class AdoptionPage extends React.Component {
 		userSubmit: false,
 		selected: false,
 		disable: true,
-		userLine: ['test1','test2'],
+		userLine: [],
 		currentAdopter: '',
 		dog: {},
 		cat: {},
@@ -67,7 +67,10 @@ class AdoptionPage extends React.Component {
 						currentAdopter: this.state.user,
 					})
 				} else {
-					this.setState({currentAdopter: user[i + 1]});
+					console.log('i:', i);
+					console.log(`Adopter: ${this.state.adopter}`)
+					console.log(`Current Adopter${this.state.currentAdopter}`)
+					this.setState({currentAdopter: user});
 					let rdn = new Date().getMilliseconds();
 					rdn % 2 ? this.handleAdoptCat() : this.handleAdoptDog();
 					
