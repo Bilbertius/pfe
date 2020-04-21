@@ -67,7 +67,7 @@ class AdoptionPage extends React.Component {
 						currentAdopter: this.state.user,
 					})
 				} else {
-					this.setState({currentAdopter: user});
+					this.setState({currentAdopter: user[i + 1]});
 					let rdn = new Date().getMilliseconds();
 					rdn % 2 ? this.handleAdoptCat() : this.handleAdoptDog();
 					
@@ -149,8 +149,8 @@ class AdoptionPage extends React.Component {
 					<Dog dog={this.state.dog} onAdopt={this.handleAdoptDog} disable={this.state.disable}/>
 				</div>}
 				
-				{!this.state.selected && <h2>Currently selecting: {this.state.adopter}</h2>}
-				{this.state.selected && <p>Congratulations. You {this.state.user} have successfully adopted your new best friend !!</p>}
+				{this.state.userSubmit && !this.state.selected && <h2>Currently selecting: {this.state.currentAdopter}</h2>}
+				{this.state.selected && <p>Congratulations {this.state.user}. You have successfully adopted your new best friend !!</p>}
 				{!this.state.userSubmit &&
 				<div>
 					<form id='username-form' onSubmit={this.handleSubmit}>
