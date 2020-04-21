@@ -1,16 +1,16 @@
 img {
-    max-height: 20vh;
+    max-height: 15vh;
     width: auto;
 }
 
 .dog, .cat {
-    width: 40vw;
-    height: 50vh;
+    width: 30vw;
+    height: 40vh;
     margin: 5vh 5vw;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-start;
     text-align: center;
     background-color: rgba(163, 200, 200, 0.73);
     border-radius: 5px;
@@ -46,5 +46,5 @@ ul.animal {
 .image-container{
 
     height: 20vh;
-    width: 30vw;
+    width: auto;
 }

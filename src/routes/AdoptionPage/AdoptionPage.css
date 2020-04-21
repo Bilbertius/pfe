@@ -37,14 +37,7 @@
 
     padding: 4vh 4vw;
   }
-ul#info {
-  margin: 1vh 2vw;
-  padding-left: 0;
-  list-style-type: none;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-evenly;
-}
+
 ul#info > li {
   height: 2vh;
 }
@@ -52,7 +45,7 @@ ul#info > li {
   .pet-container{
     display: flex;
     flex-flow: column nowrap;
-    align-items: stretch;
+    align-items: center;
     padding:2vh 8vw;
 
   }
@@ -63,26 +56,7 @@ ul#info > li {
     border-radius: 15px;
   }
 
-  .dog-queue{
-    background-color: aquamarine;
-    border-radius: 10px;
-    flex-direction: column;
-    display: flex;
-    margin:10px;
-    max-width: 40vw;
-    max-height: 40vh;
-    padding:5px;
-  }
-  .cat-queue{
-    background-color: aquamarine;
-    border-radius: 10px;
-    flex-direction: column;
-    display: flex;
-    margin:10px;
-    max-height: 40vh;
-    max-width: 40vw;
-    padding:5px;
-  }
+
   
   .wrapped-adopted{
     height: 80vh;
@@ -139,4 +113,8 @@ ul#info > li {
     background-color: skyblue;
     color: #172d41;
 
+  }
+
+  .wait-message {
+    text-align: center;
   }
