@@ -106,8 +106,8 @@ class AdoptionPage extends React.Component {
 				disable: true,
 				selected: true
 			})
+		}
 	}
-	
 
 	
 	
