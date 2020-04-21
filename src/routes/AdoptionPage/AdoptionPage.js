@@ -107,10 +107,7 @@ class AdoptionPage extends React.Component {
 		})
 	}
 	
-	renderUserWait() {
-		let wait = this.state.userLength
-	}
-	
+
 	
 	
 	handleAdoptDog = () => {
