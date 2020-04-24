@@ -36,10 +36,14 @@ class LandingPage extends React.Component {
       <section className='landing-page'>
     
           <p>Welcome to Petful where we pride ourselves as being the friendliest pet center in the world</p>
-          <p>We have lovable pets for adoption. Search through our database and see which furry friend will touch your heart.</p>
+          <p>We have lovable pets for adoption. Come see which furry friend will touch your heart.</p>
+       <p>The process begins when  users enter their name and are placed in a line based who arrived first. Then you can see your place 
+       in the queue and when it is your turn select cat or dog you would like to adopt. Our policy is that the animals who were here first 
+       are always the first to be adopted</p>
           <span>
                     <img id='landing-img' src={SearchPets} alt="search for your new pet"/>
                 </span>
+       
 
         <Link to='/adoption'>Get Started</Link>
         
