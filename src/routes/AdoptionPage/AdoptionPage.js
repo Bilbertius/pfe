@@ -171,7 +171,7 @@ class AdoptionPage extends React.Component {
 				<div>
 					<form id='username-form' onSubmit={this.handleSubmit}>
 						<label htmlFor="username">Please enter your name to begin</label>
-						<input type='text' name="username" onChange={this.handleChange} value={user}/>
+						<input type='text' required name="username" onChange={this.handleChange} value={user}/>
 						<button type='submit'>begin</button>
 					</form>
 				</div>}
