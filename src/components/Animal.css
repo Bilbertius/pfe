@@ -26,6 +26,8 @@ p {
 }
 
 .user-list {
+padding-left:10px;
+    padding-right:10px;
     display: flex;
     background-color: #98c898;
     width: 100vw;
