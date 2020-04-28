@@ -28,7 +28,7 @@ p {
 .user-list {
     display: flex;
     background-color: #98c898;
-    width: 100%;
+    width: 100vw;
     overflow-x:auto;
 }
 
