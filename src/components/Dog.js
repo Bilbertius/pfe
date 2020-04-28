@@ -35,7 +35,7 @@ function Dog(props) {
 		<div className="dog">
 			<div>
 				<h3>{name}</h3>
-				<p>This {age} year old {gender} {breed} dog who was {story} could be yours. </p>
+				<p>This {age} year old {gender} {breed} dog could be yours. How {name} came to us: {story}. </p>
 				<div className="image-container">
 					<img src={imageURL} alt={description}/>
 				</div>
