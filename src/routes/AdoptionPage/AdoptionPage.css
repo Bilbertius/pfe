@@ -91,7 +91,7 @@ ul#info > li {
     list-style-type: none;
     background-color: aquamarine;
     border-radius: 10px;
-    height: 35vh;
+    /*height: 35vh; */
     text-align: left;
   }
 
