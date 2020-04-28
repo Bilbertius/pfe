@@ -42,7 +42,7 @@ function Cat(props)  {
 			
 			<div>
 				<h3>{name}</h3>
-				<p>This {age} year old {gender} {breed} cat who was {story} could be yours. </p>
+				<p>This {age} year old {gender} {breed} cat could be yours. How they came to us: {story}. </p>
 				<div className='image-container'>
 					<img src={imageURL} alt={description}/>
 				</div>
